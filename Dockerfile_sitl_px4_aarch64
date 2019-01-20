@@ -18,10 +18,10 @@ RUN  apt-get update  \
   && rm -rf /var/lib/apt/lists/{apt,dpkg,cache,log} /tmp/* /var/tmp/*
 
 
-# SITL PORTS: some of these may be unused?
+# default port that simulator_mavlink listens for connections on
 EXPOSE 4560/tcp
-EXPOSE 5760/tcp
-# Simulators connect to this port for SITL
+
+# the simulator may broadcast mavlink status (eg to QGC) on this port
 EXPOSE 14560/udp
 
 # We need some files from PX4 toolchain and build output in order to run sitl
