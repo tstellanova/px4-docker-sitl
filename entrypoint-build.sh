@@ -6,5 +6,5 @@ if [ ! -d "./Firmware" ]; then
   git clone https://github.com/PX4/Firmware
 fi
 cd Firmware
-make px4_sitl none
+make px4_sitl 
 
