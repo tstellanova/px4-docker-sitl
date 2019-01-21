@@ -27,5 +27,5 @@ docker build -f Dockerfile_sitl_px4_aarch64 -t px4_sitl .
 ## Run px4_sitl in a container
 Exposes various ports that px4_sitl needs to communicate with the outside world. Reconfigure as needed
 ```
-docker run --rm --name px4_sitl0   -p 4560:4560 -p 14560:14560  -it px4_sitl 
+docker run --rm --name px4_sitl0   -p 4560:4560 -p 14560:14560/udp  -it px4_sitl
 ```
