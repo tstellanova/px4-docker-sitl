@@ -1,5 +1,5 @@
 
-# Run px4_sitl in container on aarch64 
+# Run px4_sitl using mavlink control in container on aarch64 
 
 FROM arm64v8/debian
 MAINTAINER Todd Stellanova <todd@droneflow.com>
@@ -25,9 +25,9 @@ EXPOSE 4560/tcp
 EXPOSE 14560/udp
 
 # We need some files from PX4 toolchain and build output in order to run sitl
-COPY ./proj/px4firmware/Tools/ /simu/Firmware/Tools/
-COPY ./proj/px4firmware/ROMFS/ /simu/Firmware/ROMFS/
-COPY ./proj/px4firmware/build/px4_sitl_default/ /simu/Firmware/build/px4_sitl_default/
+COPY ./proj/px4firmware-mavlink/Tools/ /simu/Firmware/Tools/
+COPY ./proj/px4firmware-mavlink/ROMFS/ /simu/Firmware/ROMFS/
+COPY ./proj/px4firmware-mavlink/build/px4_sitl_default/ /simu/Firmware/build/px4_sitl_default/
 
 COPY ./entrypoint-sitl.sh /
 RUN chmod +x ./entrypoint-sitl.sh 
