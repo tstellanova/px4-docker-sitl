@@ -18,15 +18,15 @@ RUN apt-get update && apt-get -y --quiet --no-install-recommends install \
 		doxygen \
 		file \
 		g++ \
-                g++-arm-linux-gnueabi \
+        g++-arm-linux-gnueabi \
 		gcc \
-                gcc-arm-linux-gnueabi \
+        gcc-arm-linux-gnueabi \
 		gdb \
 		git \
 		gnupg \
 		gosu \
 		lcov \
-                libfaketime \
+        libfaketime \
 		libfreetype6-dev \
 		libgtest-dev \
 		libpng-dev \
@@ -37,7 +37,7 @@ RUN apt-get update && apt-get -y --quiet --no-install-recommends install \
 		openjdk-8-jre \
 		openssh-client \
 		pkg-config \
-                python-dev \
+        python-dev \
 		python-pip \
 		python-pygments \
 		python-setuptools \
