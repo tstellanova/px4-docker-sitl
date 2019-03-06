@@ -7,7 +7,7 @@ MAINTAINER Todd Stellanova <todd@droneflow.com>
 ENV DEBIAN_FRONTEND noninteractive
 
 
-COPY ./entrypoint-sitl-mavlink-build.sh /
-RUN chmod +x ./entrypoint-sitl-mavlink-build.sh 
-ENTRYPOINT ["./entrypoint-sitl-mavlink-build.sh"]
+COPY ./entrypoint-sitl-uorb-build.sh /
+RUN chmod +x ./entrypoint-sitl-uorb-build.sh 
+ENTRYPOINT ["./entrypoint-sitl-uorb-build.sh"]
 
