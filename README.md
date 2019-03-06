@@ -10,19 +10,28 @@ Build the base development environment for PX4 (for aarch64)
 docker build -f Dockerfile_base_px4_aarch64 -t px4_base .
 ```
 
-## Build px4_sitl firmware
+## Building and running px4_sitl with mavlink support 
+### Build px4_sitl firmware (with mavlink tcp server)
 ```
-docker build -f Dockerfile_build_px4_aarch64 -t px4_build .
-# creates a shared proj directory where firmware sources can live
-mkdir -p $PWD/proj
-docker run --rm --name px4_build0 -v $PWD/proj:/proj -it px4_build
+./run_mavlink_build.sh
 ```
-
-## Build minimal px4_sitl container 
+### Build minimal (mavlink-based) px4_sitl container 
 This embeds px4_sitl in a container 
 ```
-docker build -f Dockerfile_sitl_px4_aarch64 -t px4_sitl .
+docker build -f Dockerfile_sitl_mavlink_px4_aarch64 -t px4_sitl .
 ```
+
+## Building and running px4_sitl with uorb injection support 
+## Build px4_sitl firmware (with uorb sidecar )
+```
+./run_uorb_build.sh
+```
+### Build minimal (uorb-based) px4_sitl container 
+This embeds px4_sitl in a container 
+```
+docker build -f Dockerfile_sitl_uorb_px4_aarch64 -t px4_sitl .
+```
+
 
 ## Run px4_sitl in a container
 Exposes various ports that px4_sitl needs to communicate with the outside world. Reconfigure as needed
