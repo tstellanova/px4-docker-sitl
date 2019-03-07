@@ -1,7 +1,7 @@
 
-# Perform px4_sitl build on aarch64
+# Perform px4_sitl build on aarch64 of uorb-sidecar
 
-FROM px4_base 
+FROM px4_base_rust 
 MAINTAINER Todd Stellanova <todd@droneflow.com>
 
 ENV DEBIAN_FRONTEND noninteractive
