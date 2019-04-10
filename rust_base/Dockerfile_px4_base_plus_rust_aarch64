@@ -1,0 +1,18 @@
+
+# Create px4 base environment plus rust support
+
+FROM px4_base 
+MAINTAINER Todd Stellanova <todd@droneflow.com>
+
+ENV DEBIAN_FRONTEND noninteractive
+
+SHELL ["/bin/bash", "-c"]
+
+# install toolchain
+RUN curl https://sh.rustup.rs -sSf | sh -s -- -y
+
+ENV PATH="/root/.cargo/bin:${PATH}"
+
+CMD ["/bin/bash"]
+
+
