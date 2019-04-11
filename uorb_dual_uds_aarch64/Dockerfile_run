@@ -1,0 +1,39 @@
+
+# Run px4_sitl using uorb control in container on aarch64 
+
+FROM arm64v8/debian
+MAINTAINER Todd Stellanova <todd@droneflow.com>
+
+ENV DEBIAN_FRONTEND noninteractive
+
+# minimal packages required to run
+RUN apt-get update && apt-get -y --quiet --no-install-recommends install \
+		lldb \
+		procps 
+
+# cleanup package cruft
+RUN  apt-get update  \
+  && apt-get -y autoremove \
+  && apt-get clean autoclean \
+  && rm -rf /var/lib/apt/lists/{apt,dpkg,cache,log} /tmp/* /var/tmp/*
+
+
+# default port that simulator_mavlink listens for connections on
+EXPOSE 4560/tcp
+
+# the simulator may broadcast mavlink status (eg to QGC) on this port
+EXPOSE 14560/udp
+
+# We need some files from PX4 toolchain and build output in order to run sitl
+COPY ./proj/px4firmware-uorb/Tools/ /simu/Firmware/Tools/
+COPY ./proj/px4firmware-uorb/ROMFS/ /simu/Firmware/ROMFS/
+COPY ./proj/px4firmware-uorb/build/px4_sitl_default/ /simu/Firmware/build/px4_sitl_default/
+
+COPY ./proj/mavulator-uds/target/debug/mavulator /simu/mavulator
+
+COPY ./entrypoint-dual-run.sh  /
+RUN chmod +x ./entrypoint-dual-run.sh 
+ENTRYPOINT ["./entrypoint-dual-run.sh"]
+#CMD ["/bin/bash"]
+
+
